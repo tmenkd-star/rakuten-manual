@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>楽天開店準備マニュアル</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #f5f6fa;
+      color: #2c2c2c;
+      line-height: 1.8;
+    }
+
+    header {
+      background: linear-gradient(135deg, #BF0000 0%, #8B0000 100%);
+      color: white;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    header p {
+      margin-top: 8px;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* チェックリストカード */
+    .checklist-card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-left: 5px solid #BF0000;
+    }
+    .checklist-card h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #BF0000;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .checklist-card h2::before { content: "✅"; font-size: 18px; }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .checklist-grid { grid-template-columns: 1fr; }
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      padding: 8px 12px;
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      user-select: none;
+    }
+    .check-item:hover { background: #f0f0f0; }
+    .check-item.done {
+      background: #f1faf3;
+      border-color: #a5d6a7;
+      text-decoration: line-through;
+      color: #888;
+    }
+    .check-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .check-item input[type="checkbox"]:checked {
+      background: #BF0000;
+      border-color: #BF0000;
+    }
+    .check-item input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 0px;
+      width: 5px;
+      height: 9px;
+      border: 2px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    /* セクション */
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .section-num {
+      background: #BF0000;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* スペック表 */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-top: 12px;
+    }
+    .spec-table th {
+      background: #f7f7f7;
+      padding: 8px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 1px solid #e8e8e8;
+      width: 100px;
+    }
+    .spec-table td {
+      padding: 8px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+    }
+
+    /* 画像タイプカード */
+    .image-type {
+      margin-bottom: 24px;
+    }
+    .image-type:last-child { margin-bottom: 0; }
+    .image-type-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 8px;
+      padding: 6px 12px;
+      background: #f9f1f1;
+      border-radius: 6px;
+      border-left: 3px solid #BF0000;
+    }
+
+    /* 商品情報 */
+    .product-item {
+      margin-bottom: 20px;
+      padding: 16px;
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    .product-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #BF0000;
+      margin-bottom: 8px;
+    }
+    .product-item p {
+      font-size: 13.5px;
+      color: #555;
+    }
+
+    /* 注意事項 */
+    .notice {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #6d4c00;
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    .notice::before { content: "⚠️"; flex-shrink: 0; }
+
+    .warning-card {
+      background: #fff3f3;
+      border: 1px solid #ffcdd2;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      color: #c62828;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 10px;
+    }
+    .warning-card::before { content: "🚫"; flex-shrink: 0; }
+
+    .info-card {
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      color: #2e7d32;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 10px;
+    }
+    .info-card::before { content: "✅"; flex-shrink: 0; }
+
+    /* 入力フィールド */
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee;
+      font-size: 13.5px;
+    }
+    .input-row:last-child { border-bottom: none; }
+    .input-label {
+      font-weight: 600;
+      color: #555;
+      width: 200px;
+      flex-shrink: 0;
+    }
+    .input-box {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      background: #fff;
+      color: #888;
+    }
+
+    /* 例画像 */
+    .example-block {
+      margin-top: 16px;
+    }
+    .example-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .example-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      display: block;
+    }
+    .example-img-missing {
+      width: 100%;
+      background: #f5f5f5;
+      border: 2px dashed #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* リンク */
+    a {
+      color: #BF0000;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    .sheet-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a73e8;
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    .sheet-link:hover { background: #1557b0; text-decoration: none !important; }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: #999;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏪 楽天開店準備マニュアル</h1>
+  <p>楽天市場への新規出店に必要な制作物・設定項目をまとめたチェックリストです</p>
+</header>
+
+<div class="container">
+
+  <!-- 事前対応セクション -->
+  <div class="section" style="border-left: 5px solid #BF0000; margin-bottom: 24px;">
+    <div class="section-header">
+      <div class="section-num" style="background:#BF0000;">!</div>
+      <h2>開店前に対応が必要な項目</h2>
+    </div>
+
+    <div style="margin-bottom: 20px; padding: 16px; background: #fafafa; border-radius: 8px; border: 1px solid #eee;">
+      <div style="font-size: 14px; font-weight: 700; color: #BF0000; margin-bottom: 8px;">楽天への自動振替口座を登録（楽天銀行口座）</div>
+      <p style="font-size: 13.5px; color: #444; margin-bottom: 8px;">BillPayへログインの上、自動振替口座の設定をお願いいたします。<br>既に登録済みの場合、登録内容に不備がある可能性がございます。Billpayをご確認ください。</p>
+      <a href="https://navi-manual.faq.rakuten.net/design/000009379?scid=me_ich_jsopoc03#link-04" target="_blank" style="font-size: 13px; color: #BF0000;">▼ 手順を確認する</a>
+    </div>
+
+    <div style="margin-bottom: 20px; padding: 16px; background: #fafafa; border-radius: 8px; border: 1px solid #eee;">
+      <div style="font-size: 14px; font-weight: 700; color: #BF0000; margin-bottom: 8px;">楽天からの振込口座を登録</div>
+      <p style="font-size: 13.5px; color: #444; margin-bottom: 8px;">BillPayへログインの上、振込口座の設定をお願いいたします。<br>既に登録済みの場合、登録内容に不備がある可能性がございます。Billpayをご確認ください。</p>
+      <a href="https://navi-manual.faq.rakuten.net/design/000009379?scid=me_ich_jsopoc03#link-05" target="_blank" style="font-size: 13px; color: #BF0000;">▼ 手順を確認する</a>
+    </div>
+
+    <div style="padding: 16px; background: #fafafa; border-radius: 8px; border: 1px solid #eee;">
+      <div style="font-size: 14px; font-weight: 700; color: #BF0000; margin-bottom: 8px;">本人確認書類の提出</div>
+      <p style="font-size: 13.5px; color: #444; margin-bottom: 8px;">本人確認書類が未提出です。ご提出をお願いいたします。<br><span style="color:#888;">※反映までに4営業日かかります。既に提出済みの場合ご放念ください。</span></p>
+      <a href="https://navi-manual.faq.rakuten.net/design/000037060?scid=me_ich_jsopoc03#link-07" target="_blank" style="font-size: 13px; color: #BF0000;">▼ 詳細を確認する</a>
+    </div>
+  </div>
+
+  <!-- チェックリスト -->
+  <div class="checklist-card">
+    <h2>制作物・商品詳細 チェックリスト</h2>
+    <div class="checklist-grid">
+      <label class="check-item"><input type="checkbox"><span>正方形ロゴ画像（960px × 960px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>長方形ロゴ画像（160px × 960px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>サムネイル画像（1080px × 1080px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>商品LP画像（PNG または JPEG）</span></label>
+      <label class="check-item"><input type="checkbox"><span>既存ページのURL（Amazon等）</span></label>
+      <label class="check-item"><input type="checkbox"><span>販売価格（単品・セット）</span></label>
+      <label class="check-item"><input type="checkbox"><span>PC上部看板画像（950px × 200px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>スマホ・PC共通看板画像（1920px × 640px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>PC共通看板画像（1920px × 480px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>大バナー画像（1440px × 280px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>小バナー画像（500px × 200px）</span></label>
+      <label class="check-item"><input type="checkbox"><span>セキュリティー責任者の登録</span></label>
+    </div>
+  </div>
+
+  <!-- 1. 店舗ロゴ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>店舗ロゴ画像</h2>
+    </div>
+
+    <div class="image-type">
+      <div class="image-type-title">📷 正方形ロゴ画像</div>
+      <table class="spec-table">
+        <tr><th>サイズ</th><td>縦 960px × 横 960px</td></tr>
+        <tr><th>容量</th><td>1MB 以内</td></tr>
+        <tr><th>形式</th><td>JPEG</td></tr>
+      </table>
+    </div>
+
+    <div class="image-type">
+      <div class="image-type-title">📷 長方形ロゴ画像</div>
+      <table class="spec-table">
+        <tr><th>サイズ</th><td>縦 160px × 横 960px</td></tr>
+        <tr><th>容量</th><td>1MB 以内</td></tr>
+        <tr><th>形式</th><td>JPEG</td></tr>
+      </table>
+    </div>
+
+    <div class="example-block">
+      <div class="example-label">例）</div>
+      <img class="example-img" src="example_logo.jpg" alt="店舗ロゴ画像の例"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="example-img-missing" style="display:none;">📁 同フォルダに <strong>example_logo.jpg</strong> を保存すると表示されます</div>
+    </div>
+  </div>
+
+  <!-- 2. 商品ページ情報 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>商品ページ情報（例：あまざけ）</h2>
+    </div>
+
+    <div class="product-item">
+      <h4>① サムネイル画像</h4>
+      <p>商品画像の1枚目として表示されます。</p>
+      <div class="notice">商品名と内容量の記載が必須です。テキスト要素の占有率は <strong>20% 以下</strong> にしてください。</div>
+    </div>
+
+    <div class="product-item">
+      <h4>② 商品LP画像</h4>
+      <p>LP素材を <strong>PNG または JPEG</strong> 形式でご共有ください。</p>
+    </div>
+
+    <div class="product-item">
+      <h4>③ 既存ページのURL（Amazon等）</h4>
+      <p>既存の商品ページを参考に、楽天ショップの商品詳細を入力します。</p>
+    </div>
+
+    <div class="product-item">
+      <h4>④ 販売価格</h4>
+      <p>単品価格（税込）をご記入ください。セット商品がある場合はセット価格もご連絡ください。</p>
+    </div>
+  </div>
+
+  <!-- 3. PC看板画像 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>看板画像（PC上部）</h2>
+    </div>
+
+    <div class="image-type">
+      <div class="image-type-title">🖥 PC上部に表示される看板画像</div>
+      <table class="spec-table">
+        <tr><th>サイズ</th><td>横 950px × 縦 200px</td></tr>
+      </table>
+    </div>
+
+    <div class="notice" style="margin-top:14px;"><span>ショップ名より他のテキストが大きいと指摘が入ります。テキストは小さくシンプルに。<br>画像右下に「<strong>楽天ショップ名（例：母の恵楽天市場店）</strong>」の記載をお願いします。</span></div>
+
+    <div class="example-block">
+      <div class="example-label">例）</div>
+      <img class="example-img" src="example_kanban.jpg" alt="看板画像の例"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="example-img-missing" style="display:none;">📁 同フォルダに <strong>example_kanban.jpg</strong> を保存すると表示されます</div>
+    </div>
+  </div>
+
+  <!-- 4. 店舗トップページ看板 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>店舗トップページ　看板設定</h2>
+    </div>
+
+    <div class="image-type">
+      <div class="image-type-title">📱💻 スマートフォン・PC 共通看板画像</div>
+      <table class="spec-table">
+        <tr><th>スマホ・PC共通</th><td>横 1920px × 縦 640px</td></tr>
+        <tr><th>PC用</th><td>横 1920px × 縦 480px</td></tr>
+      </table>
+    </div>
+
+    <div class="notice" style="margin-top:14px;"><span>ショップ名より他のテキストが大きいと指摘が入ります。テキストは小さくシンプルに。<br>画像右下に「<strong>楽天ショップ名（例：母の恵楽天市場店）</strong>」の記載をお願いします。</span></div>
+
+    <div class="example-block">
+      <div class="example-label">例）セクション3と同じ看板画像を使用</div>
+      <img class="example-img" src="example_kanban.jpg" alt="看板画像の例"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="example-img-missing" style="display:none;">📁 同フォルダに <strong>example_kanban.jpg</strong> を保存すると表示されます</div>
+    </div>
+  </div>
+
+  <!-- 5. バナー画像 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>バナー画像</h2>
+    </div>
+
+    <div class="image-type">
+      <div class="image-type-title">🖼 大バナー（スマートフォン・PC 共通）</div>
+      <table class="spec-table">
+        <tr><th>サイズ</th><td>横 1440px × 縦 280px</td></tr>
+      </table>
+    </div>
+
+    <div class="example-block">
+      <div class="example-label">例）</div>
+      <img class="example-img" src="example_banner.jpg" alt="大バナーの例"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div class="example-img-missing" style="display:none;">📁 同フォルダに <strong>example_banner.jpg</strong> を保存すると表示されます</div>
+    </div>
+
+    <div class="image-type" style="margin-top:16px;">
+      <div class="image-type-title">🖼 小バナー（スマートフォン・PC 共通）</div>
+      <table class="spec-table">
+        <tr><th>サイズ</th><td>横 500px × 縦 200px</td></tr>
+      </table>
+      <div class="notice" style="margin-top:10px;">他のバナーと違うデザインで制作をお願いします。</div>
+    </div>
+  </div>
+
+  <!-- 6. 薬事表現 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>薬事表現（薬機法・景表法）の注意点</h2>
+    </div>
+
+    <p style="font-size:13.5px; color:#555; margin-bottom:16px;">バナーや画像内で「効果・効能」を強調しすぎると法律違反のリスクがあります。</p>
+
+    <div class="warning-card">
+      健康食品や化粧品で「病気が治る」「痩せる」「シミが消える」などの医薬品的な効果を謳うことは<strong>禁止</strong>されています。
+    </div>
+    <div class="warning-card">
+      文字だけでなく、<strong>画像</strong>を用いた訴求も行政や楽天から厳しく監視されています。
+    </div>
+  </div>
+
+  <!-- 7. セキュリティー責任者 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>店舗セキュリティー責任者の登録</h2>
+    </div>
+
+    <p style="font-size:13.5px; color:#555; margin-bottom:16px;">基本情報設定 ＞ 店舗詳細情報 から以下を登録してください。</p>
+
+    <div class="input-row">
+      <span class="input-label">責任者の名前</span>
+      <span style="font-size:13.5px; color:#333;"></span>
+    </div>
+    <div class="input-row">
+      <span class="input-label">責任者のメールアドレス</span>
+      <span style="font-size:13.5px; color:#333;"></span>
+    </div>
+    <div class="input-row">
+      <span class="input-label">緊急連絡先</span>
+      <span style="font-size:13.5px; color:#333;">安田まで連絡をお願いします</span>
+    </div>
+  </div>
+
+  <!-- 8. 制作物まとめシート -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>制作物まとめシート</h2>
+    </div>
+    <p style="font-size:13.5px; color:#555; margin-bottom:14px;">新商材ローンチ時の制作物はこちらのスプレッドシートで管理してください。</p>
+    <a href="https://docs.google.com/spreadsheets/d/1_bZH9EA4M93SsQx4lKTDlilGyP_pgeAIbLPBzq2ntrU/edit?usp=sharing" target="_blank" class="sheet-link">
+      📊 新商材ローンチ時の制作物シートを開く
+    </a>
+  </div>
+
+</div>
+
+<footer>楽天開店準備マニュアル</footer>
+
+<script>
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      this.closest('.check-item').classList.toggle('done', this.checked);
+    });
+  });
+</script>
+
+</body>
+</html>
